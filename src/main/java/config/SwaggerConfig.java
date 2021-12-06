@@ -19,11 +19,12 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
 @EnableSwagger2
+@ComponentScan(basePackageClasses = { Application.class })
 public class SwaggerConfig {
 	@Bean
 	public Docket apiDocket() {
-		return new Docket(DocumentationType.SWAGGER_2).select().apis(RequestHandlerSelectors.basePackage("com"))
-				.paths(PathSelectors.any()).build().apiInfo(getApiInfo());
+		return new Docket(DocumentationType.SWAGGER_2).groupName("api-preguntados").apiInfo(getApiInfo())
+				.select().apis(RequestHandlerSelectors.any()).paths(PathSelectors.regex("/preguntados.*")).build();
 	}
 
 	private ApiInfo getApiInfo() {
