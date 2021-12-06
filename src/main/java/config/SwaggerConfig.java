@@ -2,6 +2,8 @@ package config;
 
 import org.springframework.context.annotation.Configuration;
 
+import com.google.common.base.Predicate;
+
 import postgresql.Application;
 
 import org.springframework.context.annotation.ComponentScan;
@@ -9,6 +11,7 @@ import java.util.Collections;
 
 import org.springframework.context.annotation.Bean;
 
+import springfox.documentation.RequestHandler;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -26,7 +29,7 @@ public class SwaggerConfig {
 	@Bean
 	public Docket apiDocket() {
 		return new Docket(DocumentationType.SWAGGER_2).groupName("api-preguntados").apiInfo(apiInfo())
-				.select().apis(RequestHandlerSelectors.any()).paths(PathSelectors.regex("/nttpreguntados.*")).build();
+				.select().apis((Predicate<RequestHandler>) RequestHandlerSelectors.any()).paths((Predicate<String>) PathSelectors.regex("/preguntados.*")).build();
 	}
 
 	private ApiInfo apiInfo() {
