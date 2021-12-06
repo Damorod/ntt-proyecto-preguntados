@@ -24,11 +24,11 @@ public class SwaggerConfig {
 
 	private ApiInfo getApiInfo() {
 		return new ApiInfo(
-			       "REST API", 
-			       "REST description of API.", 
-			       "API TOS", 
+			       "Preguntados API", 
+			       "Preguntados REST.", 
+			       "API", 
 			       "Terms of service", 
-			       new Contact("Rajib Garai", "https://www.linkedin.com/in/rajibgarai90/", "90rajibgarai@gmail.com"), 
+			       new Contact("Damian Rodriguez", "test", "maili@gmail.com"), 
 			       "License of API", "API license URL", Collections.emptyList());
 		}
 }
