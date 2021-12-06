@@ -23,9 +23,12 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class SwaggerConfig {
 	@Bean
 	public Docket apiDocket() {
-		return new Docket(DocumentationType.SWAGGER_2).groupName("api-preguntados").apiInfo(getApiInfo())
-				.select().apis(RequestHandlerSelectors.any()).paths(PathSelectors.regex("/preguntados.*")).build();
-	}
+		return new Docket(DocumentationType.SWAGGER_2).select()
+	            .apis(RequestHandlerSelectors
+	                .basePackage("org.abc.xyz.controller"))
+	            .paths(PathSelectors.regex("/.*"))
+	            .build().apiInfo(getApiInfo());	
+		}
 
 	private ApiInfo getApiInfo() {
 		return new ApiInfo("Order Service API", "Order Service API Description", "1.0", "http://codmind.com/terms",
