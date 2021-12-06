@@ -18,7 +18,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
 @EnableSwagger2
-@ComponentScan(basePackageClasses = { NttPreguntadosController.class })
+@ComponentScan(basePackageClasses = { Application.class })
 public class SwaggerConfig {
 	@Bean
 	public Docket apiDocket() {
