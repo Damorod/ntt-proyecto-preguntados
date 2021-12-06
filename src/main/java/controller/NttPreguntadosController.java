@@ -17,12 +17,12 @@ import io.swagger.annotations.ApiResponses;
 @RequestMapping("/api/test")
 public class NttPreguntadosController {
 	
-	@RequestMapping(value = "", method = RequestMethod.GET)
-	@ApiOperation(value = "Pantalla Home", notes = "Pantalla de inicio")
-	@ApiResponses({ @ApiResponse(code = 200, message = "test") })
-	public String home() {
-		return "test";
-	}
+//	@RequestMapping(value = "", method = RequestMethod.GET)
+//	@ApiOperation(value = "Pantalla Home", notes = "Pantalla de inicio")
+//	@ApiResponses({ @ApiResponse(code = 200, message = "test") })
+//	public String home() {
+//		return "test";
+//	}
 	
 	@GetMapping("/test")
 	public String allAccess() {
