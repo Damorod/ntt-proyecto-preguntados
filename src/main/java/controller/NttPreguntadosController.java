@@ -1,5 +1,6 @@
 package controller;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,9 +12,9 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("")
-@Api(value = "", produces = "text/plain")
+@RequestMapping("/api/test")
 public class NttPreguntadosController {
 	
 	@RequestMapping(value = "", method = RequestMethod.GET)
