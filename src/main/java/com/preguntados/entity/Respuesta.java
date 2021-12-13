@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "respuesta")
 public class Respuesta {
@@ -18,7 +20,7 @@ public class Respuesta {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "respuesta_id")
-	private int respuestaID;
+	private Long respuestaID;
 	
 	@Column(name = "texto")
 	private String texto;
@@ -26,18 +28,24 @@ public class Respuesta {
 	@Column(name = "es_correcta")
 	private String esCorrecta;
 
-	//@Column(name = "pregunta_id")
-	//private int preguntaId;
-
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "pregunta_id",referencedColumnName = "pregunta_id")
+	@JsonIgnore
     private Pregunta opcion;
 	
-	public int getRespuestaID() {
+	public Pregunta getOpcion() {
+		return opcion;
+	}
+
+	public void setOpcion(Pregunta opcion) {
+		this.opcion = opcion;
+	}
+
+	public Long getRespuestaID() {
 		return respuestaID;
 	}
 
-	public void setRespuestaID(int respuestaID) {
+	public void setRespuestaID(Long respuestaID) {
 		this.respuestaID = respuestaID;
 	}
 
@@ -57,11 +65,4 @@ public class Respuesta {
 		this.esCorrecta = esCorrecta;
 	}
 
-	/*public int getPreguntaId() {
-		return preguntaId;
-	}
-
-	public void setPreguntaId(int preguntaId) {
-		this.preguntaId = preguntaId;
-	}*/
 }

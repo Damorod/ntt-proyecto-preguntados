@@ -1,3 +1,11 @@
 com\preguntados\controller\NttController.class
+com\preguntados\dao\PreguntaDAO.class
+com\preguntados\dao\CategoriaDAO.class
+com\preguntados\entity\Categoria.class
+com\preguntados\entity\Pregunta.class
+com\preguntados\controller\PreguntaController.class
+com\preguntados\entity\Respuesta.class
 com\preguntados\config\SwaggerConfig.class
+com\preguntados\controller\CategoriaController.class
+com\preguntados\dao\RespuestaDAO.class
 com\preguntados\App.class

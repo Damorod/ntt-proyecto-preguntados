@@ -1,13 +1,11 @@
-C:\Users\Damo\Documents\GitHub\ntt-proyecto-preguntados\src\main\java\com\preguntados\dao\hbn\RespuestaDAOHbn.java
 C:\Users\Damo\Documents\GitHub\ntt-proyecto-preguntados\src\main\java\com\preguntados\entity\Categoria.java
 C:\Users\Damo\Documents\GitHub\ntt-proyecto-preguntados\src\main\java\com\preguntados\entity\Pregunta.java
-C:\Users\Damo\Documents\GitHub\ntt-proyecto-preguntados\src\main\java\com\preguntados\dao\PreguntaDAO.java
-C:\Users\Damo\Documents\GitHub\ntt-proyecto-preguntados\src\main\java\com\preguntados\entity\Respuesta.java
-C:\Users\Damo\Documents\GitHub\ntt-proyecto-preguntados\src\main\java\com\preguntados\config\SwaggerConfig.java
-C:\Users\Damo\Documents\GitHub\ntt-proyecto-preguntados\src\main\java\com\preguntados\dao\hbn\CategoriaDAOHbn.java
-C:\Users\Damo\Documents\GitHub\ntt-proyecto-preguntados\src\main\java\com\preguntados\dao\hbn\PreguntaDAOHbn.java
 C:\Users\Damo\Documents\GitHub\ntt-proyecto-preguntados\src\main\java\com\preguntados\controller\NttController.java
 C:\Users\Damo\Documents\GitHub\ntt-proyecto-preguntados\src\main\java\com\preguntados\App.java
 C:\Users\Damo\Documents\GitHub\ntt-proyecto-preguntados\src\main\java\com\preguntados\dao\RespuestaDAO.java
+C:\Users\Damo\Documents\GitHub\ntt-proyecto-preguntados\src\main\java\com\preguntados\dao\PreguntaDAO.java
 C:\Users\Damo\Documents\GitHub\ntt-proyecto-preguntados\src\main\java\com\preguntados\controller\PreguntaController.java
 C:\Users\Damo\Documents\GitHub\ntt-proyecto-preguntados\src\main\java\com\preguntados\dao\CategoriaDAO.java
+C:\Users\Damo\Documents\GitHub\ntt-proyecto-preguntados\src\main\java\com\preguntados\controller\CategoriaController.java
+C:\Users\Damo\Documents\GitHub\ntt-proyecto-preguntados\src\main\java\com\preguntados\entity\Respuesta.java
+C:\Users\Damo\Documents\GitHub\ntt-proyecto-preguntados\src\main\java\com\preguntados\config\SwaggerConfig.java

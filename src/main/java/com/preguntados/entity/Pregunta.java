@@ -13,20 +13,22 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.LazyCollection;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import springfox.documentation.annotations.ApiIgnore;
 
 @Entity
 @Table(name = "pregunta")
 public class Pregunta {
 
 	@Id
-	@Column(name = "pregunta_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int pregunta_id;
-
-	//@Column(name = "categoria_id")
-	//private int categoriaId;
+	@Column(name = "pregunta_id")
+	private Long preguntaId;
 
 	@Column(name = "enunciado")
 	private String enunciado;
@@ -36,23 +38,43 @@ public class Pregunta {
 			
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "categoria_id",referencedColumnName = "categoria_id")
+	@JsonIgnore
     private Categoria categ;
 	
-/*	public int getId() {
-		return id;
+	@Transient
+    private Long idCategoria;
+
+	public Long getIdCategoria() {
+		return idCategoria;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setIdCategoria(Long idCategoria) {
+		this.idCategoria = idCategoria;
 	}
 
-/*	public int getCategoriaId() {
-		return categoriaId;
+	public Long getPreguntaId() {
+		return preguntaId;
 	}
 
-	public void setCategoriaId(int categoriaId) {
-		this.categoriaId = categoriaId;
-	}*/
+	public void setPreguntaId(Long preguntaId) {
+		this.preguntaId = preguntaId;
+	}
+
+	public List<Respuesta> getRespuestas() {
+		return respuestas;
+	}
+
+	public void setRespuestas(List<Respuesta> respuestas) {
+		this.respuestas = respuestas;
+	}
+
+	public Categoria getCateg() {
+		return categ;
+	}
+
+	public void setCateg(Categoria categ) {
+		this.categ = categ;
+	}
 
 	public String getEnunciado() {
 		return enunciado;

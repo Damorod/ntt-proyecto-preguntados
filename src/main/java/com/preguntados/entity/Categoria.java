@@ -19,7 +19,7 @@ public class Categoria {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "categoria_id")
-	private int categoriaId;
+	private Long categoriaId;
 	
 	@Column(name = "nombre")
 	private String nombre;
@@ -30,11 +30,11 @@ public class Categoria {
 	@OneToMany(mappedBy = "categ", cascade = CascadeType.ALL)
 	private List<Pregunta> preguntas;
 	
-	public int getCategoriaId() {
+	public Long getCategoriaId() {
 		return categoriaId;
 	}
 
-	public void setCategoriaId(int categoriaId) {
+	public void setCategoriaId(Long categoriaId) {
 		this.categoriaId = categoriaId;
 	}
 
