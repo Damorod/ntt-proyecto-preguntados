@@ -17,7 +17,7 @@ import com.preguntados.entity.Respuesta;
 import java.util.Random;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/nttPreguntados")
 public class NttController {
 
 	@Autowired
@@ -26,7 +26,7 @@ public class NttController {
 	private PreguntaDAO preguntaDAO;
 	
 	@RequestMapping(value = "preguntaId/{preguntaId}/respuetsaId/{respuestaId}" , method = RequestMethod.GET)
-	public String validarRespuesta(@PathVariable("preguntaId") Long preguntaId, @PathVariable("respuestaId") Long respuestaId ) {
+	public String validarRespuesta(@PathVariable("preguntaId") Integer preguntaId, @PathVariable("respuestaId") Integer respuestaId ) {
 		
 		Optional<Pregunta> preg = preguntaDAO.findById(preguntaId);
 		Optional<Respuesta> resp = respuestaDAO.findById(respuestaId);
@@ -55,7 +55,7 @@ public class NttController {
 		
 		Random random = new Random();
 		
-		long numRandom = random.nextInt(cantPreguntas - min + 1) + min;
+		Integer numRandom = random.nextInt(cantPreguntas - min + 1) + min;
 		
 		try {
 			Optional<Pregunta> preguntaIndividual = preguntaDAO.findById(numRandom);

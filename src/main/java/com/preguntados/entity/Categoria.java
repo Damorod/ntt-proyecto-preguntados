@@ -1,5 +1,6 @@
 package com.preguntados.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "categoria")
 public class Categoria {
@@ -19,7 +22,7 @@ public class Categoria {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "categoria_id")
-	private Long categoriaId;
+	private Integer categoriaId;
 	
 	@Column(name = "nombre")
 	private String nombre;
@@ -28,13 +31,22 @@ public class Categoria {
 	private String descripcion;
 
 	@OneToMany(mappedBy = "categ", cascade = CascadeType.ALL)
-	private List<Pregunta> preguntas;
+	@JsonIgnore
+	private List<Pregunta> preguntas = new ArrayList<>();
 	
-	public Long getCategoriaId() {
+	public List<Pregunta> getPreguntas() {
+		return preguntas;
+	}
+
+	public void setPreguntas(List<Pregunta> preguntas) {
+		this.preguntas = preguntas;
+	}
+
+	public Integer getCategoriaId() {
 		return categoriaId;
 	}
 
-	public void setCategoriaId(Long categoriaId) {
+	public void setCategoriaId(Integer categoriaId) {
 		this.categoriaId = categoriaId;
 	}
 
@@ -52,6 +64,10 @@ public class Categoria {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+	
+	public void agregarPreg(Pregunta pregunta) {
+		this.preguntas.add(pregunta);
 	}
 	
 }

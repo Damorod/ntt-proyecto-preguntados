@@ -24,13 +24,11 @@ import com.preguntados.entity.Respuesta;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/preguntas")
 public class PreguntaController {
 
 	@Autowired
 	private PreguntaDAO preguntaDAO;
-	@Autowired
-	private RespuestaDAO respuestaDAO;
 	@Autowired
 	private CategoriaDAO categoriaDAO;
 	
@@ -41,7 +39,7 @@ public class PreguntaController {
 	}
 
 	@RequestMapping(value = "preguntaId/{preguntaId}", method = RequestMethod.GET)
-	public ResponseEntity<Pregunta> obtenerPregunta(@PathVariable("preguntaId") Long preguntaId) {
+	public ResponseEntity<Pregunta> obtenerPregunta(@PathVariable("preguntaId") Integer preguntaId) {
 		Optional<Pregunta> preguntaIndividual = preguntaDAO.findById(preguntaId);
 		if (preguntaIndividual.isPresent()) {
 			return ResponseEntity.ok(preguntaIndividual.get());
@@ -52,24 +50,25 @@ public class PreguntaController {
 	
 	@ApiOperation(value = "Crea una pregunta")
 	@PostMapping("/creaPregunta")
-	public ResponseEntity<Pregunta> creaPregunta(@RequestBody Pregunta pregunta) {	
-		List<Respuesta> respuestas = new ArrayList<>();
-		for(Respuesta res : pregunta.getRespuestas()) {
-			Respuesta resp = new Respuesta();
-			resp.setEsCorrecta(res.getEsCorrecta());
-			resp.setRespuestaID(res.getRespuestaID());
-			resp.setTexto(res.getTexto());
-			resp.setOpcion(pregunta);
-			respuestas.add(resp);
-		}
+	public ResponseEntity<Pregunta> creaPregunta(@RequestBody Pregunta pregunta) {
+		Pregunta preg = new Pregunta();
+		preg.setEnunciado(pregunta.getEnunciado());
 		Optional<Categoria> categ  = categoriaDAO.findById(pregunta.getIdCategoria());
 		if(categ.isPresent()) {
-			pregunta.setCateg(categ.get());
+			preg.setCateg(categ.get());
 		}else {
 			throw new Error("No existe la categoria");
 		}
-		pregunta.setRespuestas(respuestas);
-		preguntaDAO.save(pregunta);
-		return ResponseEntity.ok(pregunta);
+		if(preguntaDAO.findById(pregunta.getPreguntaId()).isPresent()) {
+			throw new Error("Ya existe la pregunta con ese id");
+		}
+		preg.setPreguntaId(pregunta.getPreguntaId());
+		List<Respuesta> respuestas = pregunta.getRespuestas();
+		for(Respuesta res : respuestas) {
+			res.setOpcion(preg);
+		}
+		preg.setRespuestas(respuestas);
+		preguntaDAO.save(preg);
+		return ResponseEntity.ok(preg);
 	}
 }

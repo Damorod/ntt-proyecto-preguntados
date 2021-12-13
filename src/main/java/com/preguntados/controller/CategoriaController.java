@@ -21,7 +21,7 @@ import com.preguntados.entity.Pregunta;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/categorias")
 public class CategoriaController {
 	
 	@Autowired
@@ -34,7 +34,7 @@ public class CategoriaController {
 	}
 
 	@RequestMapping(value = "categoriaId/{categoriaId}", method = RequestMethod.POST)
-	public ResponseEntity<Categoria> obtenerCategoria(@PathVariable("categoriaId") Long categoriaId) {
+	public ResponseEntity<Categoria> obtenerCategoria(@PathVariable("categoriaId") Integer categoriaId) {
 		Optional<Categoria> categoriaIndividual = categoriaDAO.findById(categoriaId);
 		if (categoriaIndividual.isPresent()) {
 			return ResponseEntity.ok(categoriaIndividual.get());
@@ -46,13 +46,21 @@ public class CategoriaController {
 	@ApiOperation(value = "Crea una categoria")
 	@PostMapping("/creaCategoria")
 	public ResponseEntity<Categoria> crearCategoria(@RequestBody Categoria categoria) {
-		Categoria newCate = categoriaDAO.save(categoria);
-		return ResponseEntity.ok(newCate);
+		if(categoriaDAO.findById(categoria.getCategoriaId()).isPresent()) {
+			throw new Error("Ya existe la categoria con ese id");
+		}else {
+			Categoria newCate = categoriaDAO.save(categoria);
+			return ResponseEntity.ok(newCate);
+		}
 	}
 	
-	@RequestMapping(value = "categoriaId", method = RequestMethod.DELETE)
-	public ResponseEntity<Object> borrarCategoria(@PathVariable("categoriaId") Long categoriaId) {
-		categoriaDAO.deleteById(categoriaId);
+	@RequestMapping(value = "categoriaId/{categoriaId}", method = RequestMethod.DELETE)
+	public ResponseEntity<Object> borrarCategoria(@PathVariable("categoriaId") Integer categoriaId) {
+		if(!categoriaDAO.findById(categoriaId).isPresent()) {
+			throw new Error("No existe la categoria con ese id");
+		}else {
+			categoriaDAO.deleteById(categoriaId);
+		}
 		return ResponseEntity.ok(null);
 	}
 }

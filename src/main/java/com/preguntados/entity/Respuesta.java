@@ -20,7 +20,7 @@ public class Respuesta {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "respuesta_id")
-	private Long respuestaID;
+	private Integer respuestaID;
 	
 	@Column(name = "texto")
 	private String texto;
@@ -39,13 +39,14 @@ public class Respuesta {
 
 	public void setOpcion(Pregunta opcion) {
 		this.opcion = opcion;
+		this.opcion.agregarResp(this);
 	}
 
-	public Long getRespuestaID() {
+	public Integer getRespuestaID() {
 		return respuestaID;
 	}
 
-	public void setRespuestaID(Long respuestaID) {
+	public void setRespuestaID(Integer respuestaID) {
 		this.respuestaID = respuestaID;
 	}
 
