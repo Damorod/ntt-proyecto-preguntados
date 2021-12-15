@@ -59,6 +59,7 @@ public class NttController {
 		
 		try {
 			Optional<Pregunta> preguntaIndividual = preguntaDAO.findById(numRandom);
+			preguntaIndividual.get().setIdCategoria(preguntaIndividual.get().getCateg().getCategoriaId());
 			if (preguntaIndividual.isPresent()) {
 				return ResponseEntity.ok(preguntaIndividual.get());
 			} 
