@@ -68,6 +68,7 @@ public class PreguntaController {
 			res.setOpcion(preg);
 		}
 		preg.setRespuestas(respuestas);
+		preg.setIdCategoria(pregunta.getIdCategoria());
 		preguntaDAO.save(preg);
 		return ResponseEntity.ok(preg);
 	}
