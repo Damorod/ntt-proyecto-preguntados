@@ -41,6 +41,7 @@ public class PreguntaController {
 	@RequestMapping(value = "preguntaId/{preguntaId}", method = RequestMethod.GET)
 	public ResponseEntity<Pregunta> obtenerPregunta(@PathVariable("preguntaId") Integer preguntaId) {
 		Optional<Pregunta> preguntaIndividual = preguntaDAO.findById(preguntaId);
+		preguntaIndividual.get().setIdCategoria(preguntaIndividual.get().getCateg().getCategoriaId());
 		if (preguntaIndividual.isPresent()) {
 			return ResponseEntity.ok(preguntaIndividual.get());
 		} else {
