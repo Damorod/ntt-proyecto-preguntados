@@ -35,7 +35,12 @@ public class PreguntaController {
 	@GetMapping("/obtenerTodasPreguntas")
 	public ResponseEntity<List<Pregunta>> obtenerTodasPreguntas() {
 		List<Pregunta> preguntas = preguntaDAO.findAll();
-		return ResponseEntity.ok(preguntas);	
+		List<Pregunta> pregs = new ArrayList<>();
+		for(Pregunta p : preguntas) {
+			p.setIdCategoria(p.getCateg().getCategoriaId());
+			pregs.add(p);
+		}
+		return ResponseEntity.ok(pregs);	
 	}
 
 	@RequestMapping(value = "preguntaId/{preguntaId}", method = RequestMethod.GET)
